@@ -1,0 +1,8 @@
+.venv/
+.idea/
+__pycache__/
+*.pyc
+app/queue/
+app/results/
+app/failed/
+.DS_Store
