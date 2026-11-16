@@ -1,0 +1,29 @@
+=== E2: Replica detached ===
+{"source":"replica","value":100}
+
+{"source":"primary","value":101}
+
+{"source":"primary","value":102}
+
+{"source":"primary","value":103}
+
+{"source":"primary","value":104}
+
+{"source":"primary","value":105}
+
+{"source":"primary","value":106}
+
+{"source":"primary","value":107}
+
+{"source":"primary","value":108}
+
+{"source":"primary","value":109}
+
+{"source":"primary","value":110}
+
+=== Primary ===
+{"source":"primary","value":110}
+
+=== Replica ===
+{"source":"replica","value":100}
+

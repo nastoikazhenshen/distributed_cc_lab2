@@ -1,0 +1,2 @@
+Primary: 110; replica: 110
+Catch-up observed 0.0447 seconds after monitoring began
