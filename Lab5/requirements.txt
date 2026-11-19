@@ -1,0 +1,3 @@
+requests>=2.31,<3
+pytest>=8,<10
+locust>=2.20,<3

@@ -1,0 +1,16 @@
+# Local Python environment and caches
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.idea/
+.DS_Store
+
+# Local legacy job data (not evidence for Lab 5)
+app/queue/
+app/results/
+app/failed/
+
+# Keep required evidence logs/ and screenshots/ for final submission.
+# Do not ignore logs/, screenshots/, or test_report.md.
