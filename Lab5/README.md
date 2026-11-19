@@ -125,9 +125,11 @@ locust -f tests/locustfile.py --headless -u 100 -r 20 -t 60s --host http://127.0
 
 | Users | Requests | Failures | Throughput (RPS) | Median | p95 |
 |---:|---:|---:|---:|---:|---:|
-| 10 | 1,906 | 0 | 32.21 | 7 ms | 15 ms |
-| 50 | 9,180 | 0 | 154.85 | 5 ms | 14 ms |
-| 100 | 17,150 | 0 | 289.14 | 8 ms | 140 ms |
+| 10 | 1,905 | 0 | 32.21 | 7 ms | 15 ms |
+| 50 | 9,136 | 0 | 154.72 | 5 ms | 14 ms |
+| 100 | 17,087 | 0 | 289.39 | 8 ms | 140 ms |
+
+The table uses the saved `*_stats.csv` aggregated rows. Final terminal summaries showed slightly higher request totals at shutdown; CSV snapshots are used consistently across the submitted reports.
 
 All runs met the corresponding quantitative targets in `spec.md`. At 100 users the p95 response time rose notably, but a true throughput saturation point was **not conclusively located**.
 

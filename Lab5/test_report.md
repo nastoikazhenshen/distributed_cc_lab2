@@ -53,17 +53,17 @@ locust -f tests/locustfile.py --headless -u 50 -r 10 -t 60s --host http://127.0.
 locust -f tests/locustfile.py --headless -u 100 -r 20 -t 60s --host http://127.0.0.1:8080 --csv logs/locust_100
 ```
 
-The following values are taken from the final **Aggregated** Locust results supplied after each real run. Errors (%) = failure count / request count × 100.
+The table values are taken from the saved **Aggregated** rows of `logs/locust_10_stats.csv`, `logs/locust_50_stats.csv`, and `logs/locust_100_stats.csv` (rounded RPS to 2 decimals). The final terminal summaries printed slightly higher request totals because the CSV snapshots and terminal summaries were captured at different instants during shutdown. For reproducible evidence and consistent reporting, the CSV values are authoritative here. Errors (%) = failure count / request count × 100.
 
 | Users | Duration | Request Count | Failure Count | RPS | Median, ms | p95, ms | Errors, % | Target from spec.md | Pass/Fail |
 |---|---|---:|---:|---:|---:|---:|---:|---|---|
-| 10 | 60 s | 1,906 | 0 | 32.21 | 7 | 15 | 0.00 | N2: ≤1% failures; p95 ≤500 ms | PASS |
-| 50 | 60 s | 9,180 | 0 | 154.85 | 5 | 14 | 0.00 | N3: ≤2% failures; p95 ≤1,000 ms | PASS |
-| 100 | 60 s | 17,150 | 0 | 289.14 | 8 | 140 | 0.00 | N4: ≤5% failures; p95 ≤2,000 ms | PASS |
+| 10 | 60 s | 1,905 | 0 | 32.21 | 7 | 15 | 0.00 | N2: ≤1% failures; p95 ≤500 ms | PASS |
+| 50 | 60 s | 9,136 | 0 | 154.72 | 5 | 14 | 0.00 | N3: ≤2% failures; p95 ≤1,000 ms | PASS |
+| 100 | 60 s | 17,087 | 0 | 289.39 | 8 | 140 | 0.00 | N4: ≤5% failures; p95 ≤2,000 ms | PASS |
 
-**Additional endpoint-level observations at 100 users:** `GET /time` had 12,914 requests, 0 failures, median 6 ms and p95 130 ms; `POST /records` had 4,236 requests, 0 failures, median 13 ms and p95 160 ms.
+**Additional endpoint-level observations at 100 users:** `GET /time` had 12,865 requests, 0 failures, median 6 ms and p95 130 ms; `POST /records` had 4,222 requests, 0 failures, median 13 ms and p95 160 ms.
 
-**Saturation analysis:** Throughput increased from 32.21 to 154.85 to 289.14 RPS, with no observed HTTP failures. The first clear sign of performance pressure occurred at 100 users: aggregate p95 rose from 14 ms at 50 users to 140 ms at 100 users (10×). This indicates increased tail latency at the highest tested level, but it does **not** prove that maximum throughput or a true saturation point was reached. CPU, memory, queue depth and per-component timings were not separately measured, so the exact bottleneck cannot be conclusively assigned to nginx, Flask, or MongoDB.
+**Saturation analysis:** Throughput increased from 32.21 to 154.72 to 289.39 RPS, with no observed HTTP failures. The first clear sign of performance pressure occurred at 100 users: aggregate p95 rose from 14 ms at 50 users to 140 ms at 100 users (10×). This indicates increased tail latency at the highest tested level, but it does **not** prove that maximum throughput or a true saturation point was reached. CPU, memory, queue depth and per-component timings were not separately measured, so the exact bottleneck cannot be conclusively assigned to nginx, Flask, or MongoDB.
 
 **Evidence:** `logs/locust_10_stats.csv`, `logs/locust_50_stats.csv`, `logs/locust_100_stats.csv`, associated `*_stats_history.csv`, `screenshots/C2_locust_10.png`, `screenshots/C2_locust_50.png`, `screenshots/C2_locust_100.png`.
 
